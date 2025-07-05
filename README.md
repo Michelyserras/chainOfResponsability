@@ -1,6 +1,10 @@
 # Chain of Responsibility - Sistema de Login e Registro
 
-Este projeto demonstra a implementação do padrão **Chain of Responsibility** para validação de login e criação de usuários, com backend em Spring Boot e frontend em React.
+Este projeto demonstra a implementação do padrão **Chain of Responsibility** para validação de login e criação de usuários, com backend em Spring Boot e frontend em React. <br>
+<br>**Alunos:** <br>
+- Fernando Antonio
+- Michely Serras
+- Guilherme Soares
 
 ## Sobre o Projeto
 
