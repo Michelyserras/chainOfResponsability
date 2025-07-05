@@ -1,25 +1,16 @@
 import React, { useState } from "react";
-import { useLogin } from "../hooks/useLogin";
+import { useRegister } from "../hooks/useRegister";
 
-const LoginForm = ({ onShowRegister }) => {
+const RegisterForm = ({ onBackToLogin }) => {
   const [formData, setFormData] = useState({
+    name: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
 
-  const { loading, error, success, user, login, logout, clearError } =
-    useLogin();
-
-  const testUsers = [
-    { email: "admin@teste.com", password: "admin123", name: "Administrador" },
-    {
-      email: "usuario@teste.com",
-      password: "usuario123",
-      name: "Usuário Comum",
-    },
-    { email: "joao@email.com", password: "joao456", name: "João Silva" },
-    { email: "maria@email.com", password: "maria789", name: "Maria Santos" },
-  ];
+  const { loading, error, success, user, registerUser, clearError } =
+    useRegister();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,7 +19,6 @@ const LoginForm = ({ onShowRegister }) => {
       [name]: value,
     }));
 
-    // Limpa erro quando usuário começa a digitar
     if (error) {
       clearError();
     }
@@ -36,28 +26,21 @@ const LoginForm = ({ onShowRegister }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await login(formData);
+    await registerUser(formData);
   };
 
-  const fillTestUser = (testUser) => {
-    setFormData({
-      email: testUser.email,
-      password: testUser.password,
-    });
-  };
-
-  // Se logado com sucesso, mostra informações do usuário
+  // Se registro foi bem-sucedido
   if (success && user) {
     return (
       <div className="container">
         <div className="login-card">
           <div className="login-header">
-            <h1>✅ Login Realizado</h1>
+            <h1>Usuário Criado com Sucesso</h1>
             <p>Bem-vindo ao sistema!</p>
           </div>
 
           <div className="success-message">
-            Login realizado com sucesso! Todas as validações da cadeia passaram.
+            Conta criada com sucesso! Todas as validações da cadeia passaram.
           </div>
 
           <div className="user-info">
@@ -73,17 +56,18 @@ const LoginForm = ({ onShowRegister }) => {
             </p>
           </div>
 
-          <button onClick={logout} className="logout-button">
-            Fazer Logout
+          <button onClick={onBackToLogin} className="login-button">
+            Fazer Login
           </button>
 
           <div className="test-users">
-            <h4>🔍 Cadeia de Validação Executada:</h4>
+            <h4>Cadeia de Validação de Criação Executada:</h4>
             <ul>
-              <li>✅ 1. Validação de formato do email</li>
-              <li>✅ 2. Validação de força da senha</li>
-              <li>✅ 3. Verificação se usuário existe</li>
-              <li>✅ 4. Validação das credenciais</li>
+              <li>1. Verificação de unicidade do email</li>
+              <li>2. Validação de complexidade da senha</li>
+              <li>3. Confirmação de senha</li>
+              <li>4. Validação do nome</li>
+              <li>5. Criação do usuário</li>
             </ul>
           </div>
         </div>
@@ -95,13 +79,26 @@ const LoginForm = ({ onShowRegister }) => {
     <div className="container">
       <div className="login-card">
         <div className="login-header">
-          <h1>🔗 Chain of Responsibility</h1>
-          <p>Sistema de Login com Validação em Cadeia</p>
+          <h1>Criar Nova Conta</h1>
+          <p>Sistema de Registro com Validação em Cadeia</p>
         </div>
 
-        {error && <div className="error-message">❌ {error}</div>}
+        {error && <div className="error-message">{error}</div>}
 
         <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="name">Nome Completo:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Digite seu nome completo"
+              required
+            />
+          </div>
+
           <div className="form-group">
             <label htmlFor="email">Email:</label>
             <input
@@ -128,42 +125,46 @@ const LoginForm = ({ onShowRegister }) => {
             />
           </div>
 
+          <div className="form-group">
+            <label htmlFor="confirmPassword">Confirmar Senha:</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              value={formData.confirmPassword}
+              onChange={handleChange}
+              placeholder="Confirme sua senha"
+              required
+            />
+          </div>
+
           <button type="submit" className="login-button" disabled={loading}>
             {loading ? (
               <>
                 <span className="loading"></span>
-                <span style={{ marginLeft: "10px" }}>Validando...</span>
+                <span style={{ marginLeft: "10px" }}>Criando...</span>
               </>
             ) : (
-              "Entrar"
+              "Criar Conta"
             )}
           </button>
         </form>
 
-        <button
-          onClick={onShowRegister}
-          className="logout-button"
-          style={{ marginBottom: "20px" }}
-        >
-          Criar Nova Conta
+        <button onClick={onBackToLogin} className="logout-button">
+          Voltar para Login
         </button>
 
         <div className="test-users">
-          <h4>👥 Usuários para Teste (clique para preencher):</h4>
-          {testUsers.map((user, index) => (
-            <li key={index} onClick={() => fillTestUser(user)}>
-              <strong>{user.email}</strong> / {user.password} - {user.name}
-            </li>
-          ))}
-        </div>
-
-        <div className="test-users">
-          <h4>🔍 Validações da Cadeia:</h4>
+          <h4>Validações da Cadeia de Criação:</h4>
           <ul>
-            <li>1️⃣ Formato do email (regex)</li>
-            <li>2️⃣ Força da senha (6+ chars, letra + número)</li>
-            <li>3️⃣ Usuário existe no banco</li>
-            <li>4️⃣ Credenciais corretas</li>
+            <li>1. Email único (não pode estar em uso)</li>
+            <li>
+              2. Senha complexa (8+ chars, maiúscula, minúscula, número,
+              especial)
+            </li>
+            <li>3. Confirmação de senha (deve coincidir)</li>
+            <li>4. Nome válido (2-50 chars, apenas letras)</li>
+            <li>5. Criação efetiva do usuário</li>
           </ul>
         </div>
       </div>
@@ -171,4 +172,4 @@ const LoginForm = ({ onShowRegister }) => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;

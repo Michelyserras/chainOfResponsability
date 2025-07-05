@@ -27,6 +27,23 @@ export const authService = {
     }
   },
 
+  register: async (userData) => {
+    try {
+      const response = await api.post("/auth/register", userData);
+      return {
+        success: true,
+        data: response.data,
+      };
+    } catch (error) {
+      return {
+        success: false,
+        error: error.response?.data || {
+          message: "Erro de conexão com o servidor",
+        },
+      };
+    }
+  },
+
   testConnection: async () => {
     try {
       const response = await api.get("/auth/test");

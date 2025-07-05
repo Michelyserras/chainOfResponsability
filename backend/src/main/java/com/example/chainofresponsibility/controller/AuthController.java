@@ -1,9 +1,8 @@
 package com.example.chainofresponsibility.controller;
 
-import com.example.chainofresponsibility.dto.LoginRequest;
-import com.example.chainofresponsibility.dto.LoginResponse;
-import com.example.chainofresponsibility.dto.ValidationResult;
+import com.example.chainofresponsibility.dto.*;
 import com.example.chainofresponsibility.service.LoginValidationService;
+import com.example.chainofresponsibility.service.UserCreationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +18,9 @@ public class AuthController {
     @Autowired
     private LoginValidationService loginValidationService;
 
+    @Autowired
+    private UserCreationService userCreationService;
+
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
         ValidationResult validationResult = loginValidationService.validateLogin(request);
@@ -31,6 +33,23 @@ public class AuthController {
             return ResponseEntity.ok(response);
         } else {
             LoginResponse response = new LoginResponse(false, 
+                validationResult.getErrorCode(), 
+                validationResult.getMessage());
+            return ResponseEntity.badRequest().body(response);
+        }
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<RegisterResponse> register(@Valid @RequestBody CreateUserRequest request) {
+        ValidationResult validationResult = userCreationService.createUser(request);
+        
+        if (validationResult.isSuccess()) {
+            RegisterResponse response = new RegisterResponse(true, 
+                "Usuário criado com sucesso", 
+                validationResult.getUser());
+            return ResponseEntity.ok(response);
+        } else {
+            RegisterResponse response = new RegisterResponse(false, 
                 validationResult.getErrorCode(), 
                 validationResult.getMessage());
             return ResponseEntity.badRequest().body(response);
