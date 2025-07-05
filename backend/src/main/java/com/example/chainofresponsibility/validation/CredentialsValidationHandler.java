@@ -15,7 +15,7 @@ public class CredentialsValidationHandler extends LoginValidationHandler {
 
     @Override
     public ValidationResult handle(LoginRequest request) {
-        System.out.println("🔍 Validando credenciais do usuário");
+        System.out.println("Validando credenciais do usuário");
         
         User user = userService.findByEmail(request.getEmail());
         
@@ -24,7 +24,7 @@ public class CredentialsValidationHandler extends LoginValidationHandler {
                 "Email ou senha incorretos");
         }
         
-        System.out.println("✅ Credenciais válidas para usuário: " + user.getName());
+        System.out.println("Credenciais válidas para usuário: " + user.getName());
         return new ValidationResult(true, user);
     }
 }

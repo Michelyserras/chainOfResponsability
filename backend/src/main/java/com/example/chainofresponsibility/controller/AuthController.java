@@ -58,6 +58,6 @@ public class AuthController {
 
     @GetMapping("/test")
     public ResponseEntity<String> test() {
-        return ResponseEntity.ok("API está funcionando! ✅");
+        return ResponseEntity.ok("API está funcionando!");
     }
 }

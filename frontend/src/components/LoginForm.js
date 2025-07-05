@@ -52,7 +52,7 @@ const LoginForm = ({ onShowRegister }) => {
       <div className="container">
         <div className="login-card">
           <div className="login-header">
-            <h1>✅ Login Realizado</h1>
+            <h1>Login Realizado</h1>
             <p>Bem-vindo ao sistema!</p>
           </div>
 
@@ -78,12 +78,12 @@ const LoginForm = ({ onShowRegister }) => {
           </button>
 
           <div className="test-users">
-            <h4>🔍 Cadeia de Validação Executada:</h4>
+            <h4>Cadeia de Validação Executada:</h4>
             <ul>
-              <li>✅ 1. Validação de formato do email</li>
-              <li>✅ 2. Validação de força da senha</li>
-              <li>✅ 3. Verificação se usuário existe</li>
-              <li>✅ 4. Validação das credenciais</li>
+              <li>1. Validação de formato do email</li>
+              <li>2. Validação de força da senha</li>
+              <li>3. Verificação se usuário existe</li>
+              <li>4. Validação das credenciais</li>
             </ul>
           </div>
         </div>
@@ -95,11 +95,11 @@ const LoginForm = ({ onShowRegister }) => {
     <div className="container">
       <div className="login-card">
         <div className="login-header">
-          <h1>🔗 Chain of Responsibility</h1>
+          <h1>Chain of Responsibility</h1>
           <p>Sistema de Login com Validação em Cadeia</p>
         </div>
 
-        {error && <div className="error-message">❌ {error}</div>}
+        {error && <div className="error-message">{error}</div>}
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -149,7 +149,7 @@ const LoginForm = ({ onShowRegister }) => {
         </button>
 
         <div className="test-users">
-          <h4>👥 Usuários para Teste (clique para preencher):</h4>
+          <h4>Usuários para Teste (clique para preencher):</h4>
           {testUsers.map((user, index) => (
             <li key={index} onClick={() => fillTestUser(user)}>
               <strong>{user.email}</strong> / {user.password} - {user.name}
@@ -158,12 +158,12 @@ const LoginForm = ({ onShowRegister }) => {
         </div>
 
         <div className="test-users">
-          <h4>🔍 Validações da Cadeia:</h4>
+          <h4>Validações da Cadeia:</h4>
           <ul>
-            <li>1️⃣ Formato do email (regex)</li>
-            <li>2️⃣ Força da senha (6+ chars, letra + número)</li>
-            <li>3️⃣ Usuário existe no banco</li>
-            <li>4️⃣ Credenciais corretas</li>
+            <li>1. Formato do email (regex)</li>
+            <li>2. Força da senha (6+ chars, letra + número)</li>
+            <li>3. Usuário existe no banco</li>
+            <li>4. Credenciais corretas</li>
           </ul>
         </div>
       </div>

@@ -2,11 +2,11 @@
 
 Este projeto demonstra a implementação do padrão **Chain of Responsibility** para validação de login e criação de usuários, com backend em Spring Boot e frontend em React.
 
-## 📋 Sobre o Projeto
+## Sobre o Projeto
 
 O padrão Chain of Responsibility permite que você passe requests através de uma cadeia de handlers. Cada handler decide se processa o request ou o passa para o próximo handler na cadeia.
 
-### 🔗 Cadeias de Validação Implementadas
+### Cadeias de Validação Implementadas
 
 #### Cadeia de Login
 
@@ -23,7 +23,7 @@ O padrão Chain of Responsibility permite que você passe requests através de u
 4. **NameValidationHandler** - Valida nome (2-50 chars, apenas letras)
 5. **UserCreationHandler** - Cria efetivamente o usuário
 
-## 🚀 Como Executar
+## Como Executar
 
 ### Backend (Spring Boot)
 
@@ -69,13 +69,13 @@ npm start
 
 A aplicação estará disponível em: `http://localhost:3000`
 
-## 📡 Endpoints da API
+## Endpoints da API
 
 - **POST** `/api/auth/login` - Validação de login com Chain of Responsibility
 - **POST** `/api/auth/register` - Criação de usuário com Chain of Responsibility
 - **GET** `/api/auth/test` - Teste de conectividade
 
-## 👥 Usuários para Teste
+## Usuários para Teste
 
 O sistema possui os seguintes usuários pré-cadastrados:
 
@@ -84,7 +84,7 @@ O sistema possui os seguintes usuários pré-cadastrados:
 - **joao@email.com** / joao456 - João Silva
 - **maria@email.com** / maria789 - Maria Santos
 
-## 🏗️ Estrutura do Projeto
+## Estrutura do Projeto
 
 ### Backend
 
@@ -111,7 +111,7 @@ frontend/
 └── package.json
 ```
 
-## 🔍 Como Funciona
+## Como Funciona
 
 ### Login
 
@@ -127,18 +127,18 @@ frontend/
 3. **Chain Execution**: Spring Boot executa a cadeia de criação
 4. **Response**: Frontend confirma criação ou exibe erros
 
-## ✨ Funcionalidades
+## Funcionalidades
 
-- ✅ Duas cadeias de validação distintas (Login e Registro)
-- ✅ Validação em tempo real
-- ✅ Mensagens de erro específicas para cada tipo de falha
-- ✅ Interface moderna e responsiva
-- ✅ Preenchimento automático com usuários de teste
-- ✅ Logs detalhados no console do backend
-- ✅ Padrão Chain of Responsibility aplicado corretamente
-- ✅ Navegação entre telas de login e registro
+- Duas cadeias de validação distintas (Login e Registro)
+- Validação em tempo real
+- Mensagens de erro específicas para cada tipo de falha
+- Interface moderna e responsiva
+- Preenchimento automático com usuários de teste
+- Logs detalhados no console do backend
+- Padrão Chain of Responsibility aplicado corretamente
+- Navegação entre telas de login e registro
 
-## 🎯 Objetivos Educacionais
+## Objetivos Educacionais
 
 Este projeto demonstra:
 
@@ -149,7 +149,7 @@ Este projeto demonstra:
 - **Integração Frontend/Backend**: Comunicação via REST API
 - **Reutilização de Conceitos**: Mesma abstração para diferentes funcionalidades
 
-## 🧪 Testando as Cadeias
+## Testando as Cadeias
 
 ### Testando Login
 

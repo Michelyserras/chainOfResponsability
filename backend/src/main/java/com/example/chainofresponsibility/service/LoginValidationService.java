@@ -22,7 +22,7 @@ public class LoginValidationService {
     private CredentialsValidationHandler credentialsHandler;
 
     public ValidationResult validateLogin(LoginRequest request) {
-        System.out.println("\n🚀 Iniciando cadeia de validação para login");
+        System.out.println("\nIniciando cadeia de validação para login");
         
         // Constrói a cadeia de responsabilidade
         LoginValidationHandler chain = buildValidationChain();
@@ -31,9 +31,9 @@ public class LoginValidationService {
         ValidationResult result = chain.handle(request);
         
         if (result.isSuccess()) {
-            System.out.println("🎉 Todas as validações passaram com sucesso!");
+            System.out.println("Todas as validações passaram com sucesso!");
         } else {
-            System.out.println("❌ Validação falhou: " + result.getMessage());
+            System.out.println("Validação falhou: " + result.getMessage());
         }
         
         return result;

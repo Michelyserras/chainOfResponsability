@@ -15,14 +15,14 @@ public class EmailFormatValidationHandler extends LoginValidationHandler {
 
     @Override
     public ValidationResult handle(LoginRequest request) {
-        System.out.println("🔍 Validando formato do email: " + request.getEmail());
+        System.out.println("Validando formato do email: " + request.getEmail());
         
         if (request.getEmail() == null || !pattern.matcher(request.getEmail()).matches()) {
             return new ValidationResult(false, "INVALID_EMAIL_FORMAT", 
                 "Email deve ter formato válido (exemplo: usuario@dominio.com)");
         }
         
-        System.out.println("✅ Email com formato válido");
+        System.out.println("Email com formato válido");
         return passToNext(request);
     }
 }

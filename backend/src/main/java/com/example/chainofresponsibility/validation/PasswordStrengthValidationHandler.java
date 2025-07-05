@@ -9,7 +9,7 @@ public class PasswordStrengthValidationHandler extends LoginValidationHandler {
 
     @Override
     public ValidationResult handle(LoginRequest request) {
-        System.out.println("🔍 Validando força da senha");
+        System.out.println("Validando força da senha");
         
         String password = request.getPassword();
         
@@ -28,7 +28,7 @@ public class PasswordStrengthValidationHandler extends LoginValidationHandler {
                 "Senha deve conter pelo menos um número");
         }
         
-        System.out.println("✅ Senha atende aos critérios de força");
+        System.out.println("Senha atende aos critérios de força");
         return passToNext(request);
     }
 }
